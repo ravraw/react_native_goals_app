@@ -29,7 +29,11 @@ const App = () => {
   return (
     <SafeAreaView style={styles.appContainer}>
       <Button title="Add New Goal" onPress={showAddGoalModel} />
-      {modelVisible && <GoalInput addGoalHandler={addGoalHandler} />}
+      <GoalInput
+        modelVisible={modelVisible}
+        addGoalHandler={addGoalHandler}
+        deleteGoalHandler={deleteGoalHandler}
+      />
       <View style={styles.listContainer}>
         <FlatList
           data={goalList}
