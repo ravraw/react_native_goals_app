@@ -20,6 +20,7 @@ const App = () => {
   const addGoalHandler = () => {
     setGoalList((currentGoals) => [...currentGoals, enteredGoal]);
     setEnteredGoal("");
+    console.log("goalList" + goalList);
   };
   return (
     <SafeAreaView style={styles.appContainer}>
@@ -33,15 +34,15 @@ const App = () => {
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View style={styles.listContainer}>
-        {/* <ScrollView> */}
-        <FlatList alwaysBounceVertical={false}>
-          {goalList.map((goal) => (
-            <View key={goal} style={styles.listItem}>
-              <Text>{goal}</Text>
+        <FlatList
+          data={goalList}
+          renderItem={(item) => (
+            <View style={styles.listItem}>
+              <Text>{item.item}</Text>
             </View>
-          ))}
-        </FlatList>
-        {/* </ScrollView> */}
+          )}
+          alwaysBounceVertical={false}
+        />
       </View>
     </SafeAreaView>
   );
@@ -72,13 +73,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "red",
   },
-  listItem: {
-    padding: 10,
-    margin: 10,
-    backgroundColor: "lightgreen",
-    borderColor: "gray",
-    borderWidth: 1,
-  },
+  // listItem: {
+  //   padding: 10,
+  //   margin: 10,
+  //   // backgroundColor: "lightgreen",
+  //   borderColor: "gray",
+  //   borderWidth: 1,
+  // },
   textInput: {
     borderColor: "gray",
     borderWidth: 1,
