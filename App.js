@@ -32,9 +32,9 @@ const App = () => {
       </View>
       <View style={styles.listContainer}>
         {goalList.map((goal) => (
-          <Text style={styles.textInput} key={goal}>
-            {goal}
-          </Text>
+          <View key={goal} style={styles.listItem}>
+            <Text>{goal}</Text>
+          </View>
         ))}
       </View>
     </SafeAreaView>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   listItem: {
     padding: 10,
     margin: 10,
-    backgroundColor: "lightgray",
+    backgroundColor: "lightgreen",
     borderColor: "gray",
     borderWidth: 1,
   },
