@@ -6,7 +6,6 @@ import {
   TextInput,
   Text,
   View,
-  ScrollView,
   FlatList,
 } from "react-native";
 
@@ -18,9 +17,11 @@ const App = () => {
     setEnteredGoal(updatedText);
   };
   const addGoalHandler = () => {
-    setGoalList((currentGoals) => [...currentGoals, enteredGoal]);
+    setGoalList((currentGoals) => [
+      ...currentGoals,
+      { text: enteredGoal, key: Math.random().toString() },
+    ]);
     setEnteredGoal("");
-    console.log("goalList" + goalList);
   };
   return (
     <SafeAreaView style={styles.appContainer}>
@@ -36,9 +37,9 @@ const App = () => {
       <View style={styles.listContainer}>
         <FlatList
           data={goalList}
-          renderItem={(item) => (
+          renderItem={(itemData) => (
             <View style={styles.listItem}>
-              <Text>{item.item}</Text>
+              <Text>{itemData.item.text}</Text>
             </View>
           )}
           alwaysBounceVertical={false}
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     margin: 10,
-    borderWidth: 1,
-    borderColor: "red",
+    // borderWidth: 1,
+    // borderColor: "red",
     marginTop: 50,
   },
   inputContainer: {
@@ -62,16 +63,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     margin: 10,
-    borderWidth: 1,
-    borderColor: "red",
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
   },
   listContainer: {
     flex: 4,
     flexDirection: "column",
     justifyContent: "stretch",
     margin: 10,
-    borderWidth: 1,
-    borderColor: "red",
+    // borderWidth: 1,
+    // borderColor: "red",
   },
   // listItem: {
   //   padding: 10,
