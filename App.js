@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { SafeAreaView, StyleSheet, View, FlatList } from "react-native";
+import { SafeAreaView, StyleSheet, View, FlatList, Button } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 const App = () => {
   const [goalList, setGoalList] = useState([]);
+  const [modelVisible, setModelVisible] = useState(false);
 
   const textInputHandler = (updatedText) => {
     setEnteredGoal(updatedText);
@@ -16,15 +17,19 @@ const App = () => {
     ]);
   };
 
+  const showAddGoalModel = () => {
+    setModelVisible(true);
+  };
+
   const deleteGoalHandler = (goalId) => {
-    console.log(goalId);
     setGoalList((goalList) => {
       return goalList.filter((goal) => goal.id !== goalId);
     });
   };
   return (
     <SafeAreaView style={styles.appContainer}>
-      <GoalInput addGoalHandler={addGoalHandler} />
+      <Button title="Add New Goal" onPress={showAddGoalModel} />
+      {modelVisible && <GoalInput addGoalHandler={addGoalHandler} />}
       <View style={styles.listContainer}>
         <FlatList
           data={goalList}
