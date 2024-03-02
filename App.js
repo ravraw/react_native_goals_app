@@ -6,6 +6,8 @@ import {
   TextInput,
   Text,
   View,
+  ScrollView,
+  FlatList,
 } from "react-native";
 
 const App = () => {
@@ -31,11 +33,15 @@ const App = () => {
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View style={styles.listContainer}>
-        {goalList.map((goal) => (
-          <View key={goal} style={styles.listItem}>
-            <Text>{goal}</Text>
-          </View>
-        ))}
+        {/* <ScrollView> */}
+        <FlatList alwaysBounceVertical={false}>
+          {goalList.map((goal) => (
+            <View key={goal} style={styles.listItem}>
+              <Text>{goal}</Text>
+            </View>
+          ))}
+        </FlatList>
+        {/* </ScrollView> */}
       </View>
     </SafeAreaView>
   );
