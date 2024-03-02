@@ -4,10 +4,10 @@ import {
   SafeAreaView,
   StyleSheet,
   TextInput,
-  Text,
   View,
   FlatList,
 } from "react-native";
+import GoalItem from "./components/GoalItem";
 
 const App = () => {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -19,7 +19,7 @@ const App = () => {
   const addGoalHandler = () => {
     setGoalList((currentGoals) => [
       ...currentGoals,
-      { text: enteredGoal, key: Math.random().toString() },
+      { text: enteredGoal, id: Math.random().toString() },
     ]);
     setEnteredGoal("");
   };
@@ -37,11 +37,8 @@ const App = () => {
       <View style={styles.listContainer}>
         <FlatList
           data={goalList}
-          renderItem={(itemData) => (
-            <View style={styles.listItem}>
-              <Text>{itemData.item.text}</Text>
-            </View>
-          )}
+          renderItem={(itemData) => <GoalItem text={itemData.item.text} />}
+          keyExtractor={(item, index) => item.id}
           alwaysBounceVertical={false}
         />
       </View>
@@ -74,13 +71,6 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: "red",
   },
-  // listItem: {
-  //   padding: 10,
-  //   margin: 10,
-  //   // backgroundColor: "lightgreen",
-  //   borderColor: "gray",
-  //   borderWidth: 1,
-  // },
   textInput: {
     borderColor: "gray",
     borderWidth: 1,
