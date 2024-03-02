@@ -31,7 +31,11 @@ const App = () => {
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View style={styles.listContainer}>
-        <Text>{goalList}</Text>
+        {goalList.map((goal) => (
+          <Text style={styles.textInput} key={goal}>
+            {goal}
+          </Text>
+        ))}
       </View>
     </SafeAreaView>
   );
@@ -56,9 +60,18 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 4,
+    flexDirection: "column",
+    justifyContent: "stretch",
     margin: 10,
     borderWidth: 1,
     borderColor: "red",
+  },
+  listItem: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "lightgray",
+    borderColor: "gray",
+    borderWidth: 1,
   },
   textInput: {
     borderColor: "gray",
