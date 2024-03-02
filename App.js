@@ -21,6 +21,10 @@ const App = () => {
     setModelVisible(true);
   };
 
+  const closeAddGoalModel = () => {
+    setModelVisible(false);
+  };
+
   const deleteGoalHandler = (goalId) => {
     setGoalList((goalList) => {
       return goalList.filter((goal) => goal.id !== goalId);
@@ -33,6 +37,7 @@ const App = () => {
         modelVisible={modelVisible}
         addGoalHandler={addGoalHandler}
         deleteGoalHandler={deleteGoalHandler}
+        closeAddGoalModel={closeAddGoalModel}
       />
       <View style={styles.listContainer}>
         <FlatList
