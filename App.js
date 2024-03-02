@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   SafeAreaView,
@@ -7,29 +8,34 @@ import {
   View,
 } from "react-native";
 
-export default function App() {
-  const onTextChange = (value) => {
-    console.log(value);
+const App = () => {
+  const [enteredGoal, setEnteredGoal] = useState("");
+  const [goalList, setGoalList] = useState([]);
+
+  const textInputHandler = (updatedText) => {
+    setEnteredGoal(updatedText);
   };
   const addGoalHandler = () => {
-    console.log("Add goal button pressed!");
+    setGoalList((currentGoals) => [...currentGoals, enteredGoal]);
+    setEnteredGoal("");
   };
   return (
     <SafeAreaView style={styles.appContainer}>
       <View style={styles.inputContainer}>
         <TextInput
+          value={enteredGoal}
           style={styles.textInput}
           placeholder="Add a new goal!"
-          onChangeText={onTextChange}
+          onChangeText={textInputHandler}
         />
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
       <View style={styles.listContainer}>
-        <Text>List of goals....</Text>
+        <Text>{goalList}</Text>
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   appContainer: {
@@ -64,3 +70,5 @@ const styles = StyleSheet.create({
   },
   button: {},
 });
+
+export default App;
