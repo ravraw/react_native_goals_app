@@ -16,6 +16,7 @@ const GoalItem = ({ id, text, onDeleteGoal }) => {
 
 const styles = StyleSheet.create({
   listItem: {
+    flex: 1,
     margin: 8,
     padding: 8,
     backgroundColor: "#ee6002",
